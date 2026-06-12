@@ -118,6 +118,35 @@ The state file is stored at `~/.file-sync-tool/state.json` by default. It tracks
 
 You can specify a custom state path with `--state` (useful for syncing multiple directory pairs).
 
+## Testing
+
+Run all tests across all packages:
+
+```bash
+go test ./...
+```
+
+Run tests with verbose output:
+
+```bash
+go test -v ./...
+```
+
+Run tests from a specific package:
+
+```bash
+go test -v ./hash/
+go test -v ./sync/
+```
+
+Run the integration test only (tests the full sync cycle end-to-end):
+
+```bash
+go test -v -run TestIntegrationSync
+```
+
+Tests use `t.TempDir()` for temporary directories and do not touch your filesystem outside temp space.
+
 ## Project structure
 
 ```
