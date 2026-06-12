@@ -151,13 +151,18 @@ Tests use `t.TempDir()` for temporary directories and do not touch your filesyst
 
 ```
 file-sync-tool/
-├── main.go          # CLI entry point, flag parsing, orchestration
-├── types/types.go   # Shared data types (FileRecord, SyncState, Change)
-├── hash/hasher.go   # SHA-256 streaming hasher (64KB buffer)
-├── scan/scanner.go  # Directory walker collecting file records
+├── main.go              # CLI entry point, flag parsing, orchestration
+├── file_sync_test.go    # Integration test (end-to-end sync cycle)
+├── types/types.go       # Shared data types (FileRecord, SyncState, Change)
+├── hash/
+│   ├── hasher.go        # SHA-256 streaming hasher (64KB buffer)
+│   └── hasher_test.go   # Unit tests for hashing
+├── scan/scanner.go      # Directory walker collecting file records
 ├── sync/
-│   ├── state.go     # State file load/save/apply helpers
-│   └── syncer.go    # Change detection + file copy/delete logic
-├── watch/watcher.go # fsnotify watcher with debounce
-└── go.mod
+│   ├── state.go         # State file load/save/apply helpers
+│   ├── syncer.go        # Change detection + file copy/delete logic
+│   └── syncer_test.go   # Unit tests for change detection
+├── watch/watcher.go     # fsnotify watcher with debounce
+├── go.mod
+└── go.sum
 ```
